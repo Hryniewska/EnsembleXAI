@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EnsembleXAI.Metrics module &mdash; EnsembleXAI 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="EnsembleXAI.Normalization module" href="EnsembleXAI.Normalization.html" />
+    <link rel="prev" title="EnsembleXAI.Ensemble module" href="EnsembleXAI.Ensemble.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EnsembleXAI
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Example_notebook.html">Example Usage on ImageNet dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Submodules:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="EnsembleXAI.Ensemble.html">EnsembleXAI.Ensemble module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">EnsembleXAI.Metrics module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.F1_score"><code class="docutils literal notranslate"><span class="pre">F1_score()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.accordance_precision"><code class="docutils literal notranslate"><span class="pre">accordance_precision()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.accordance_recall"><code class="docutils literal notranslate"><span class="pre">accordance_recall()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.confidence_impact_ratio"><code class="docutils literal notranslate"><span class="pre">confidence_impact_ratio()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.consistency"><code class="docutils literal notranslate"><span class="pre">consistency()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.consistency_image"><code class="docutils literal notranslate"><span class="pre">consistency_image()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.decision_impact_ratio"><code class="docutils literal notranslate"><span class="pre">decision_impact_ratio()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.ensemble_score"><code class="docutils literal notranslate"><span class="pre">ensemble_score()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.intersection_mask"><code class="docutils literal notranslate"><span class="pre">intersection_mask()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.intersection_over_union"><code class="docutils literal notranslate"><span class="pre">intersection_over_union()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.matrix_2_norm"><code class="docutils literal notranslate"><span class="pre">matrix_2_norm()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.replace_masks"><code class="docutils literal notranslate"><span class="pre">replace_masks()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.stability"><code class="docutils literal notranslate"><span class="pre">stability()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.stability_image"><code class="docutils literal notranslate"><span class="pre">stability_image()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.tensor_to_list_tensors"><code class="docutils literal notranslate"><span class="pre">tensor_to_list_tensors()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Metrics.union_mask"><code class="docutils literal notranslate"><span class="pre">union_mask()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="EnsembleXAI.Normalization.html">EnsembleXAI.Normalization module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EnsembleXAI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">EnsembleXAI.Metrics module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/EnsembleXAI.Metrics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-EnsembleXAI.Metrics">
+<span id="ensemblexai-metrics-module"></span><h1>EnsembleXAI.Metrics module<a class="headerlink" href="#module-EnsembleXAI.Metrics" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.F1_score">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">F1_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">explanations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.F1_score" title="Link to this definition"></a></dt>
+<dd><p>Measures the F1 score of recall and precision calculated on explanations and masks.</p>
+<p>Measures the F1 score of recall and precision calculated on explanations and masks.
+Average of harmonic averages of <code class="docutils literal notranslate"><span class="pre">accordance_recall</span></code> and <code class="docutils literal notranslate"><span class="pre">accordance_precision</span></code>.
+Values  are in range [0,1], where 1 corresponds to the scenario where
+critical areas in the explanations perfectly match the masks.
+Metric implemented as proposed in <a class="reference internal" href="#r728db6df1d6f-1" id="id1">[1]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>explanations</strong> (<em>torch.Tensor</em>) – Tensor of the explanations with shape as such (n, channels, width, height), where n represents the number of
+explanations and correlates masks and explanations.</p></li>
+<li><p><strong>masks</strong> (<em>torch.Tensor</em>) – Tensor of the masks with 1 representing presence of the mask. Shape of the tensor should be (n, width, height),
+where n represents the number of masks and correlates masks and explanations or the same shape as explanations.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – threshold value for the explanation to be considered a critical area.
+Values greater or equal than the threshold are considered important.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>F1 metric calculated with accordance_recall and accordance_precision of each explanation, mask pair.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.accordance_recall" title="EnsembleXAI.Metrics.accordance_recall"><code class="xref py py-obj docutils literal notranslate"><span class="pre">accordance_recall</span></code></a></dt><dd><p>Measures how much area of the mask has the explanation covered.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.accordance_precision" title="EnsembleXAI.Metrics.accordance_precision"><code class="xref py py-obj docutils literal notranslate"><span class="pre">accordance_precision</span></code></a></dt><dd><p>Measures how much area of the explanation is covered by the mask.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r728db6df1d6f-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>L. Zou et al., “Ensemble image explainable AI (XAI) algorithm for severe community-acquired
+pneumonia and COVID-19 respiratory infections,”
+in IEEE Transactions on Artificial Intelligence, doi: 10.1109/TAI.2022.3153754.</p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_2d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plus_2d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">cross_2d</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">plus_2d</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">plus_2d</span><span class="p">,</span> <span class="n">cross_2d</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">F1_score</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="go">0.20000001788139343</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.accordance_precision">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">accordance_precision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">explanations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.accordance_precision" title="Link to this definition"></a></dt>
+<dd><p>Measures how much area of the explanation is covered by the mask.</p>
+<p>Measures how much area of the explanation is covered by the mask for each of the explanation,
+mask pairs in the data. Similar to the recall metric in standard classification task.
+Values are in range [0,1], where 1 represents scenario when the mask area covers
+the whole explanation area over the threshold.
+If no critical area is found in the explanation, returns 0.
+Metric implemented as proposed in <a class="reference internal" href="#r5b8012498873-1" id="id2">[1]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>explanations</strong> (<em>torch.Tensor</em>) – Tensor of the explanations with shape as such (n, channels, width, height), where n represents the number
+of explanations and correlates masks and explanations.</p></li>
+<li><p><strong>masks</strong> (<em>torch.Tensor</em>) – Tensor of the masks with 1 representing presence of the mask. Shape of the tensor should be (n, width, height),
+where n represents the number of masks and correlates masks and explanations or the same shape as explanations.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – threshold value for the explanation to be considered a critical area. Values greater or equal than
+the threshold are considered important.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tensor with value of the metric for each of the pairs in explanations and masks.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.accordance_recall" title="EnsembleXAI.Metrics.accordance_recall"><code class="xref py py-obj docutils literal notranslate"><span class="pre">accordance_recall</span></code></a></dt><dd><p>Measures how much area of the mask has the explanation covered.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.intersection_mask" title="EnsembleXAI.Metrics.intersection_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection_mask</span></code></a></dt><dd><p>Calculates the intersection of two masks.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.F1_score" title="EnsembleXAI.Metrics.F1_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">F1_score</span></code></a></dt><dd><p>Measures the F1_score of recall and precision calculated on explanations and masks.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r5b8012498873-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>L. Zou et al., “Ensemble image explainable AI (XAI) algorithm for severe community-acquired pneumonia
+and COVID-19 respiratory infections,” in IEEE Transactions on Artificial Intelligence,
+doi: 10.1109/TAI.2022.3153754.</p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_2d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plus_2d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">cross_2d</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">plus_2d</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">plus_2d</span><span class="p">,</span> <span class="n">cross_2d</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">accordance_precision</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="go">tensor([0.2000, 0.2000])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.accordance_recall">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">accordance_recall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">explanations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.accordance_recall" title="Link to this definition"></a></dt>
+<dd><p>Measures how much area of the mask has the explanation covered.</p>
+<p>Measures how much area of the mask has the explanation covered for each of the explanation, mask pairs in the data.
+Similar to the recall metric in standard classification task. Values are in range [0,1],
+where 1 represents scenario when the explanation area over the threshold covers the whole mask.
+Metric implemented as proposed in <a class="reference internal" href="#r8ac7e9cc1650-1" id="id3">[1]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>explanations</strong> (<em>torch.Tensor</em>) – Tensor of the explanations with shape as such (n, channels, width, height),
+where n represents the number of explanations and correlates masks and explanations.</p></li>
+<li><p><strong>masks</strong> (<em>torch.Tensor</em>) – Tensor of the masks with 1 representing presence of the mask. Shape of the tensor should be (n, width, height),
+where n represents the number of masks and correlates masks and explanations or the same shape as explanations.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – threshold value for the explanation to be considered a critical area.
+Values greater or equal than the threshold are considered important.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tensor with value of the metric for each of the pairs in explanations and masks.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.accordance_precision" title="EnsembleXAI.Metrics.accordance_precision"><code class="xref py py-obj docutils literal notranslate"><span class="pre">accordance_precision</span></code></a></dt><dd><p>Measures how much area of the explanation is covered by the mask.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.F1_score" title="EnsembleXAI.Metrics.F1_score"><code class="xref py py-obj docutils literal notranslate"><span class="pre">F1_score</span></code></a></dt><dd><p>Measures the F1_score of recall and precision calculated on explanations and masks.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r8ac7e9cc1650-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">1</a><span class="fn-bracket">]</span></span>
+<p>L. Zou et al., “Ensemble image explainable AI (XAI) algorithm for severe community-acquired
+pneumonia and COVID-19 respiratory infections,” in IEEE Transactions on Artificial Intelligence,
+doi: 10.1109/TAI.2022.3153754.</p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_2d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plus_2d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">cross_2d</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">plus_2d</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">plus_2d</span><span class="p">,</span> <span class="n">cross_2d</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">accordance_recall</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="go">tensor([0.2000, 0.2000])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.confidence_impact_ratio">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">confidence_impact_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images_tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predictor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">explanations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">explanation_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compare_to</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'same_prediction'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.confidence_impact_ratio" title="Link to this definition"></a></dt>
+<dd><p>Measures the average change in probabilities after hiding the critical area.</p>
+<p>Measures the average change in probabilities after hiding the critical area found by the explanation.
+When using default value of “same_prediction” for argument <cite>compare_to</cite> the probabilities taken into account are
+the ones correspoding to the same class, predicted on the original image. Then values are in range [-1,1],
+where 1 represents the best scenario, that is when for all images the prediction probability has changed
+from 1 to 0 after hiding the critical area. Meanwhile -1 represents the situation when original probability
+was close to 0 and after obscuring the critical area it change to 1.
+When using value of “new_prediction” for argument <cite>compare_to</cite> the probabilities taken into account are
+maximal probabilities, where the classes predicted are irrelevant. Therefore the values are in range [-1,1], where
+1 correspond to the situation when the model has probability of 1 on the original image and 0 on the modified image.
+On the other hand, the metric returns -1 when the model has close to 0 probability for all classes in original image,
+but after modifying it one class has probability of 1.
+For value “new_prediction”, implemented as proposed in <a class="reference internal" href="#r7a3687e26ec9-1" id="id4">[1]</a>, while for “same_prediction” the only difference is
+usage of always same class predictions probabilities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>images_tensors</strong> (<em>torch.Tensor</em>) – The images for the prediction with shape of (n, channels, width, height), where n stands for the number of images.</p></li>
+<li><p><strong>predictor</strong> (<em>Callable</em><em>[</em><em>...</em><em>, </em><em>torch.Tensor</em><em>]</em>) – Function returning a Tensor with probabilities for classification of each image to each class.
+In typical cases it’s the model prediction function, possibly wrapped in torch.nn.Softmax.</p></li>
+<li><p><strong>explanations</strong> (<em>torch.Tensor</em>) – Explanations for each of the images in images_tensor. Therefore the shape should be the same as that of images_tensor.</p></li>
+<li><p><strong>explanation_threshold</strong> (<em>float</em>) – Maximal value for explanation data point to not be considered a part of the critical area.</p></li>
+<li><p><strong>replace_value</strong> (<em>float</em>) – The value with which data in critical area found by explanation in the image will be replaced by.</p></li>
+<li><p><strong>compare_to</strong> (<em>str</em>) – Argument deciding whether to compare the original maximum probability to the
+new maximum (value: “new_prediction”) or to the new probability for the same index/class as the original one
+(value: “same_prediction”).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The average change in probabilities after hiding the critical area.
+Calculation is equal to average(probability_original - probability_hidden_area)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">_impact_ratio_helper</span></code></dt><dd><p>Wrapper for predicting on the input and the input masked by explanations.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.decision_impact_ratio" title="EnsembleXAI.Metrics.decision_impact_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decision_impact_ratio</span></code></a></dt><dd><p>Measures the average number of changes in the predictions after hiding the critical area.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r7a3687e26ec9-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">1</a><span class="fn-bracket">]</span></span>
+<p>L. Zou et al., “Ensemble image explainable AI (XAI) algorithm for severe community-acquired
+pneumonia and COVID-19 respiratory infections,”
+in IEEE Transactions on Artificial Intelligence, doi: 10.1109/TAI.2022.3153754.</p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ex_explanation</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">BoolTensor</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">predictor</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">n</span> <span class="o">=</span> <span class="n">input_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">input_tensor</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">val</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">val</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">val</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">confidence_impact_ratio</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">predictor</span><span class="p">,</span> <span class="n">ex_explanation</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;new_prediction&quot;</span><span class="p">)</span>
+<span class="go">0.19999998807907104</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">confidence_impact_ratio</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">predictor</span><span class="p">,</span> <span class="n">ex_explanation</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;same_prediction&quot;</span><span class="p">)</span>
+<span class="go">0.6000000238418579</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.consistency">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">consistency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">explanations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.consistency" title="Link to this definition"></a></dt>
+<dd><p>Metric representing how similar are different explanations of one photo.</p>
+<p>Metric representing how much do different explanations for the same model or same explanation for different models diverge.
+Maximal value of 1 represents identical explanations and values close to 0 represent greatly differing explanations.
+Metric is calculated as proposed in <a class="reference internal" href="#r023f4c16b3b6-1" id="id5">[1]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>explanations</strong> (<em>torch.Tensor</em>) – Explanations Tensor for the single image. Therefore the required shape is (n, channels, width, height),
+where n stands for the number of explanations and channels stands for a depth of the image (RGB channel in most cases).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value of the consistency metric for the input explanations.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.stability" title="EnsembleXAI.Metrics.stability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stability</span></code></a></dt><dd><p>Measures how similar/stable are explanations of similar photos.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.tensor_to_list_tensors" title="EnsembleXAI.Metrics.tensor_to_list_tensors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tensor_to_list_tensors</span></code></a></dt><dd><p>Splits first n dimensions of a Tensor into a list of Tensors.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.matrix_2_norm" title="EnsembleXAI.Metrics.matrix_2_norm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_2_norm</span></code></a></dt><dd><p>Computes the 2-norm of two matrices.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r023f4c16b3b6-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">1</a><span class="fn-bracket">]</span></span>
+<p>Bobek, S., Bałaga, P., Nalepa, G.J. (2021), “Towards Model-Agnostic Ensemble Explanations.”
+In: Paszynski, M., Kranzlmüller, D., Krzhizhanovskaya, V.V., Dongarra, J.J., Sloot, P.M. (eds)
+Computational Science – ICCS 2021. ICCS 2021. Lecture Notes in Computer Science(), vol 12745. Springer,
+Cham. <a class="reference external" href="https://doi.org/10.1007/978-3-030-77970-2_4">https://doi.org/10.1007/978-3-030-77970-2_4</a></p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ones</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">halfs</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stacked</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">ones</span><span class="p">,</span> <span class="n">halfs</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">consistency</span><span class="p">(</span><span class="n">stacked</span><span class="p">)</span>
+<span class="go">0.18761281669139862</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ones2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">consistency</span><span class="p">(</span><span class="n">ones2</span><span class="p">)</span>
+<span class="go">1.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.consistency_image">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">consistency_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">explanator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.consistency_image" title="Link to this definition"></a></dt>
+<dd><p>Calculate the consistency of explanations across multiple models.</p>
+<p>Calculate the consistency of explanations obtained from different models applied to
+transformed versions of an input image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>models</strong> (<em>List</em><em>[</em><em>nn.Module</em><em>]</em>) – List of machine learning models.</p></li>
+<li><p><strong>transforms</strong> (<em>List</em><em>[</em><em>Callable</em><em>]</em>) – List of image transformation functions corresponding to each model.</p></li>
+<li><p><strong>image</strong> (<em>torch.Tensor</em>) – Input image as a torch tensor.</p></li>
+<li><p><strong>explanator</strong> (<em>Callable</em>) – A callable that generates explanations for a given model and input.</p></li>
+<li><p><strong>**kwargs</strong> – Additional keyword arguments to be passed to the <cite>explanator</cite> function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Consistency value representing the degree of agreement among explanations.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.consistency" title="EnsembleXAI.Metrics.consistency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">consistency</span></code></a></dt><dd><p>Calculate the consistency value of a list of explanations.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.decision_impact_ratio">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">decision_impact_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images_tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predictor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">explanations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">explanation_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.decision_impact_ratio" title="Link to this definition"></a></dt>
+<dd><p>Measures the average number of changes in the predictions after hiding the critical area.</p>
+<p>Measures the average number of changes in the predictions after hiding the critical area found by the explanation.
+Values are in range [0,1], where 1 represents the best scenario,
+that is when for all images the prediction has changed after hiding the critical area.
+Implemented as proposed in <a class="reference internal" href="#rcfc94f3be51d-1" id="id6">[1]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>images_tensors</strong> (<em>torch.Tensor</em>) – The images for the prediction with shape of (n, channels, width, height), where n stands for the number of images.</p></li>
+<li><p><strong>predictor</strong> (<em>Callable</em><em>[</em><em>...</em><em>, </em><em>torch.Tensor</em><em>]</em>) – Function returning a Tensor with probabilities for classification of each image to each class.
+In typical cases it’s the model prediction function, possibly wrapped in a softmax function.</p></li>
+<li><p><strong>explanations</strong> (<em>torch.Tensor</em>) – Explanations for each of the images in images_tensor. Therefore the shape should be the same as that of images_tensor.</p></li>
+<li><p><strong>explanation_threshold</strong> (<em>float</em>) – Maximal value for explanation data point to not be considered a part of the critical area.</p></li>
+<li><p><strong>replace_value</strong> (<em>float</em>) – The value with which data in critical area found by explanation in the image will be replaced by.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The number of changes in the predictions after hiding the critica area found by the explanation.
+Equals to number of changed predictions/number of predictions.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.confidence_impact_ratio" title="EnsembleXAI.Metrics.confidence_impact_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">confidence_impact_ratio</span></code></a></dt><dd><p>Measures the average change in probabilities after hiding the critical area.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="rcfc94f3be51d-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">1</a><span class="fn-bracket">]</span></span>
+<p>L. Zou et al., “Ensemble image explainable AI (XAI) algorithm for severe community-acquired
+pneumonia and COVID-19 respiratory infections,”
+in IEEE Transactions on Artificial Intelligence, doi: 10.1109/TAI.2022.3153754.</p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ex_explanation</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">BoolTensor</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">predictor</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">n</span> <span class="o">=</span> <span class="n">input_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">input_tensor</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">val</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">val</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">val</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">decision_impact_ratio</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">predictor</span><span class="p">,</span> <span class="n">ex_explanation</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">1.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.ensemble_score">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">ensemble_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics_scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.ensemble_score" title="Link to this definition"></a></dt>
+<dd><p>Measure calculates the weighted sum of different metrics scores.</p>
+<p>Measure calculates the weighted sum of different metrics scores. Metric implemented as proposed in <a class="reference internal" href="#r02217c50381e-1" id="id7">[1]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>weights</strong> (<em>Union</em><em>[</em><em>List</em><em>, </em><em>torch.Tensor</em><em>]</em>) – Weights for the corresponding metric scores.</p></li>
+<li><p><strong>metrics_scores</strong> (<em>Union</em><em>[</em><em>List</em><em>[</em><em>torch.Tensor</em><em>]</em><em>, </em><em>torch.Tensor</em><em>, </em><em>List</em><em>[</em><em>float</em><em>]</em><em>]</em>) – Scores to be weighted and summed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The weighted sum of weights times scores.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Torch.Tensor</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r02217c50381e-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">1</a><span class="fn-bracket">]</span></span>
+<p>Bobek, S., Bałaga, P., Nalepa, G.J. (2021), “Towards Model-Agnostic Ensemble Explanations.”
+In: Paszynski, M., Kranzlmüller, D., Krzhizhanovskaya, V.V., Dongarra, J.J., Sloot, P.M. (eds)
+Computational Science – ICCS 2021. ICCS 2021. Lecture Notes in Computer Science(), vol 12745. Springer,
+Cham. <a class="reference external" href="https://doi.org/10.1007/978-3-030-77970-2_4">https://doi.org/10.1007/978-3-030-77970-2_4</a></p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">5</span>
+<span class="go">13</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ensemble_score</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="go">13</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">3</span>
+<span class="go">11</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ensemble_score</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="go">11</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.intersection_mask">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">intersection_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">absolute_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.intersection_mask" title="Link to this definition"></a></dt>
+<dd><p>Calculates the intersection of two masks.</p>
+<p>Calculates the logical ‘and’ intersections of two n-dimensional masks
+where the absolute values of data are greater than the thresholds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tensor1</strong> (<em>torch.Tensor</em>) – First of the two masks.</p></li>
+<li><p><strong>tensor2</strong> (<em>torch.Tensor</em>) – Second of the two masks.</p></li>
+<li><p><strong>threshold1</strong> (<em>float</em>) – Threshold value for the first mask.</p></li>
+<li><p><strong>threshold2</strong> (<em>float</em>) – Threshold value for the second mask.</p></li>
+<li><p><strong>absolute_value</strong> (<em>bool</em>) – Boolean deciding if the compared tensors should be taken as absolute value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Boolean Tensor with True values where the masks intersect with values over the thresholds.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.accordance_recall" title="EnsembleXAI.Metrics.accordance_recall"><code class="xref py py-obj docutils literal notranslate"><span class="pre">accordance_recall</span></code></a></dt><dd><p>Measures how much area of the mask has the explanation covered.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.accordance_precision" title="EnsembleXAI.Metrics.accordance_precision"><code class="xref py py-obj docutils literal notranslate"><span class="pre">accordance_precision</span></code></a></dt><dd><p>Measures how much area of the explanation is covered by the mask.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.intersection_over_union" title="EnsembleXAI.Metrics.intersection_over_union"><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection_over_union</span></code></a></dt><dd><p>Measures the average division of intersection area over the union area.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.union_mask" title="EnsembleXAI.Metrics.union_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">union_mask</span></code></a></dt><dd><p>Calculates the union of two masks.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_2d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_2d</span>
+<span class="go">tensor([[1., 0., 1.],</span>
+<span class="go">        [0., 1., 0.],</span>
+<span class="go">        [1., 0., 1.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plus_2d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plus_2d</span>
+<span class="go">tensor([[0., 1., 0.],</span>
+<span class="go">        [1., 1., 1.],</span>
+<span class="go">        [0., 1., 0.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intersection_mask</span><span class="p">(</span><span class="n">cross_2d</span><span class="p">,</span> <span class="n">plus_2d</span><span class="p">)</span>
+<span class="go">tensor([[False, False, False],</span>
+<span class="go">        [False,  True, False],</span>
+<span class="go">        [False, False, False]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_2d_small</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">cross_2d</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plus_2d_small</span> <span class="o">=</span> <span class="mf">0.7</span><span class="o">*</span><span class="n">plus_2d</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intersection_mask</span><span class="p">(</span><span class="n">cross_2d_small</span><span class="p">,</span> <span class="n">plus_2d_small</span><span class="p">,</span> <span class="n">threshold1</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="go">tensor([[False, False, False],</span>
+<span class="go">        [False, False, False],</span>
+<span class="go">        [False, False, False]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.intersection_over_union">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">intersection_over_union</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">explanations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.intersection_over_union" title="Link to this definition"></a></dt>
+<dd><p>Measures the average division of intersection area over the union area.</p>
+<p>Measures the average division of intersection area over the union area,
+where explanation values are over the threshold.
+Values  are in range [0,1], where 1 corresponds to the scenario where
+critical areas in the explanations perfectly match the masks.
+Metric implemented as proposed in <a class="reference internal" href="#ra080333fabea-1" id="id8">[1]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>explanations</strong> (<em>torch.Tensor</em>) – Tensor of the explanations with shape as such (n, channels, width, height),
+where n represents the number of explanations and correlates masks and explanations.</p></li>
+<li><p><strong>masks</strong> (<em>torch.Tensor</em>) – Tensor of the masks with 1 representing presence of the mask. Shape of the tensor should be (n, width, height),
+where n represents the number of masks and correlates masks and explanations or the same shape as explanations.</p></li>
+<li><p><strong>threshold</strong> (<em>float</em>) – threshold value for the explanation to be considered a critical area.
+Values greater or equal than the threshold are considered important.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The calculated measure. Equal to average(intersection_area/union_area)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.intersection_mask" title="EnsembleXAI.Metrics.intersection_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection_mask</span></code></a></dt><dd><p>Calculates the intersection of two masks.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.union_mask" title="EnsembleXAI.Metrics.union_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">union_mask</span></code></a></dt><dd><p>Calculates the union of two masks.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="ra080333fabea-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">1</a><span class="fn-bracket">]</span></span>
+<p>L. Zou et al., “Ensemble image explainable AI (XAI) algorithm for severe community-acquired
+pneumonia and COVID-19 respiratory infections,”
+in IEEE Transactions on Artificial Intelligence, doi: 10.1109/TAI.2022.3153754.</p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_2d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plus_2d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">cross_2d</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">plus_2d</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">plus_2d</span><span class="p">,</span> <span class="n">cross_2d</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intersection_over_union</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="go">0.3333333432674408</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.matrix_2_norm">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">matrix_2_norm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matrix2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sum_dim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.matrix_2_norm" title="Link to this definition"></a></dt>
+<dd><p>Computes the 2-norm of two matrices.</p>
+<p>Computes the 2-norm of two matrices. By default works on the last two dimensions of the Tensor,
+which can be extended by the sum_dim parameter to one of the remaining dimensions of the Tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>matrix1</strong> (<em>torch.Tensor</em>) – Tensor with one of the matrices to compute the norm.</p></li>
+<li><p><strong>matrix2</strong> (<em>torch.Tensor</em>) – Tensor with the second of the matrices to compute the norm. Shape has to be either equal to the first matrix,
+only the first dimension of the first matrix can be omitted.</p></li>
+<li><p><strong>sum_dim</strong> (<em>int</em>) – Optional dimension to extend the calculation to. Indexed as in the original matrix,
+therefore supports both positive and negative indexing.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tensor with value or values of the 2-norm. The shape is similar to both of the input matrices,
+except for last two removed dimensions and the optional dimension specified in sum_dim parameter.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.consistency" title="EnsembleXAI.Metrics.consistency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">consistency</span></code></a></dt><dd><p>Metric representing how similar are different explanations of one photo.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.stability" title="EnsembleXAI.Metrics.stability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stability</span></code></a></dt><dd><p>Measures how similar/stable are explanations of similar photos.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">onez_2D</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zeroz_2D</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">matrix_2_norm</span><span class="p">(</span><span class="n">onez_2D</span><span class="p">,</span> <span class="n">zeroz_2D</span><span class="p">)</span>
+<span class="go">tensor(3.)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">onez_3D</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zeroz_3D</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">matrix_2_norm</span><span class="p">(</span><span class="n">onez_3D</span><span class="p">,</span> <span class="n">zeroz_3D</span><span class="p">)</span>
+<span class="go">tensor([2.4495, 2.4495, 2.4495, 2.4495])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">matrix_2_norm</span><span class="p">(</span><span class="n">onez_3D</span><span class="p">,</span> <span class="n">zeroz_3D</span><span class="p">,</span> <span class="n">sum_dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">tensor(4.8990)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">onez_4D</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">zeroz_4D</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">matrix_2_norm</span><span class="p">(</span><span class="n">onez_4D</span><span class="p">,</span> <span class="n">zeroz_4D</span><span class="p">,</span> <span class="n">sum_dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">tensor([5.4772, 5.4772, 5.4772, 5.4772])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">matrix_2_norm</span><span class="p">(</span><span class="n">onez_4D</span><span class="p">,</span> <span class="n">zeroz_4D</span><span class="p">,</span> <span class="n">sum_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">tensor([4.8990, 4.8990, 4.8990, 4.8990, 4.8990])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.replace_masks">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">replace_masks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">images</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replacement_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.replace_masks" title="Link to this definition"></a></dt>
+<dd><p>Replaces values in Tensor indexed by a boolean tensor.</p>
+<p>Replaces data in the Tensor with one value in the spots where boolean index Tensor is True.
+In the case when a 4D tensor with a 3D index is given, index is repeated along the second dimension to fit the data shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>images</strong> (<em>torch.Tensor</em>) – Tensor of any shape, in most cases 4D Tensor of the images with shape (number of photos, RGB channel, height, width)</p></li>
+<li><p><strong>replacement_index</strong> (<em>torch.BoolTensor</em>) – Boolean Tensor of shape same as images or in case of the 4D images Tensor, a
+3D boolean Tensor where true corresponds index to be replaced with shape (number of photos, height, width)</p></li>
+<li><p><strong>value</strong> (<em>int</em><em> or </em><em>float</em>) – Value to use for replacing the data with.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tensor of same shape as input with the replaced data.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.decision_impact_ratio" title="EnsembleXAI.Metrics.decision_impact_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decision_impact_ratio</span></code></a></dt><dd><p>Measures the average number of changes in the predictions after hiding the critical area.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.confidence_impact_ratio" title="EnsembleXAI.Metrics.confidence_impact_ratio"><code class="xref py py-obj docutils literal notranslate"><span class="pre">confidence_impact_ratio</span></code></a></dt><dd><p>Measures the average change in probabilities after hiding the critical area.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image</span>
+<span class="go">tensor([[1., 1., 1.],</span>
+<span class="go">        [1., 1., 1.],</span>
+<span class="go">        [1., 1., 1.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">BoolTensor</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index</span>
+<span class="go">tensor([[False,  True, False],</span>
+<span class="go">        [False,  True, False],</span>
+<span class="go">        [False,  True, False]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">replace_masks</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">tensor([[1., 0., 1.],</span>
+<span class="go">        [1., 0., 1.],</span>
+<span class="go">        [1., 0., 1.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image_4D</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">tensor([[1., 1., 1., 1.],</span>
+<span class="go">        [1., 1., 1., 1.],</span>
+<span class="go">        [1., 1., 1., 1.],</span>
+<span class="go">        [1., 1., 1., 1.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index_3D</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">BoolTensor</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">index_3D</span>
+<span class="go">tensor([[[False,  True,  True, False],</span>
+<span class="go">         [False,  True,  True, False],</span>
+<span class="go">         [False,  True,  True, False],</span>
+<span class="go">         [False,  True,  True, False]]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">replaced_image</span> <span class="o">=</span> <span class="n">replace_masks</span><span class="p">(</span><span class="n">image_4D</span><span class="p">,</span> <span class="n">index_3D</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">replaced_image</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">tensor([[1., 2., 2., 1.],</span>
+<span class="go">        [1., 2., 2., 1.],</span>
+<span class="go">        [1., 2., 2., 1.],</span>
+<span class="go">        [1., 2., 2., 1.]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.stability">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">stability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">explanator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">images_to_compare</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">500.0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.stability" title="Link to this definition"></a></dt>
+<dd><p>Measures how similar/stable are explanations of similar photos.</p>
+<p>The metric measures the similarity of one type of explanation between similar photos. As explanations need to be created for each of the images close enough (by some metric, norm 2 used here) to the compared image, this may take a significant amount of processing power and memory. Values are always positive.</p>
+<p>The metrics is implemented as proposed in <a class="reference internal" href="#r98b4756b7876-1" id="id9">[1]</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>explanator</strong> (<em>Callable that returns torch.Tensor</em>) – The function used to obtain explanations for both the single image
+and the number of images in images_to_compare. Writing a wrapper to handle both options might be required.
+All <a href="#id10"><span class="problematic" id="id11">**</span></a>kwargs are additionaly passed to this function.</p></li>
+<li><p><strong>image</strong> (<em>torch.Tensor</em>) – 3D Tensor of the image for other images to be compared to. Shape has to be (channels, width, height).</p></li>
+<li><p><strong>images_to_compare</strong> (<em>torch.Tensor</em>) – 4D Tensor of the images compared to the original image. Shape therefore has to be (n, channels, width, height),
+where n stands for the number of images used.</p></li>
+<li><p><strong>epsilon</strong> (<em>float</em>) – Maximal value by which an image is considered to be close enough to the original image.
+Choice of this parameter should be done carefully and
+testing by calculating some distances manually is recommended, using the matrix 2 norm.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value of the metrics calculated for the images close to the original image.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.consistency" title="EnsembleXAI.Metrics.consistency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">consistency</span></code></a></dt><dd><p>Metric representing how similar are different explanations of one photo.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.tensor_to_list_tensors" title="EnsembleXAI.Metrics.tensor_to_list_tensors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tensor_to_list_tensors</span></code></a></dt><dd><p>Splits first n dimensions of a Tensor into a list of Tensors.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.matrix_2_norm" title="EnsembleXAI.Metrics.matrix_2_norm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">matrix_2_norm</span></code></a></dt><dd><p>Computes the 2-norm of two matrices.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r98b4756b7876-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">1</a><span class="fn-bracket">]</span></span>
+<p>Bobek, S., Bałaga, P., Nalepa, G.J. (2021), “Towards Model-Agnostic Ensemble Explanations.”
+In: Paszynski, M., Kranzlmüller, D., Krzhizhanovskaya, V.V., Dongarra, J.J., Sloot, P.M. (eds)
+Computational Science – ICCS 2021. ICCS 2021. Lecture Notes in Computer Science(), vol 12745. Springer,
+Cham. <a class="reference external" href="https://doi.org/10.1007/978-3-030-77970-2_4">https://doi.org/10.1007/978-3-030-77970-2_4</a></p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">images</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">])</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">image</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">])</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">explain_dummy</span><span class="p">(</span><span class="n">images_tensor</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">summed</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">images_tensor</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">n</span> <span class="o">=</span> <span class="n">images_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">summed</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">explanation</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">explanation</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">explanation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stability</span><span class="p">(</span><span class="n">explain_dummy</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">images</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">0.13370312750339508</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.stability_image">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">stability_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">explanator:</span> <span class="pre">~typing.Callable[[...],</span> <span class="pre">~torch.Tensor],</span> <span class="pre">image:</span> <span class="pre">~torch.Tensor,</span> <span class="pre">transform:</span> <span class="pre">~typing.Callable</span> <span class="pre">=</span> <span class="pre">&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;,</span> <span class="pre">n_samples:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">5,</span> <span class="pre">sigma:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">'auto',</span> <span class="pre">random_seed:</span> <span class="pre">None</span> <span class="pre">|</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">return_noised_images:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False,</span> <span class="pre">device:</span> <span class="pre">~torch.device</span> <span class="pre">=</span> <span class="pre">device(type='cpu'),</span> <span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnsembleXAI.Metrics.stability_image" title="Link to this definition"></a></dt>
+<dd><p>Measure the stability of explanations across similar images.</p>
+<p>Calculate the stability of explanations obtained from a single image and a set of
+similar images generated by adding noise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>explanator</strong> (<em>Callable</em><em>[</em><em>...</em><em>, </em><em>torch.Tensor</em><em>]</em>) – A callable that generates explanations for an image.</p></li>
+<li><p><strong>image</strong> (<em>torch.Tensor</em>) – 3D tensor of the reference image.</p></li>
+<li><p><strong>transform</strong> (<em>Callable</em><em>, </em><em>optional</em>) – A function for image transformation, by default the identity function.</p></li>
+<li><p><strong>n_samples</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of noisy images to generate, by default 5.</p></li>
+<li><p><strong>sigma</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>float</em><em>]</em><em>, </em><em>optional</em>) – Standard deviation for adding noise, ‘auto’ for automatic calculation, by default ‘auto’.</p></li>
+<li><p><strong>random_seed</strong> (<em>Union</em><em>[</em><em>None</em><em>, </em><em>int</em><em>]</em><em>, </em><em>optional</em>) – Seed for random number generator, by default None.</p></li>
+<li><p><strong>return_noised_images</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, return the noisy images along with the stability value, by default False.</p></li>
+<li><p><strong>device</strong> (<em>torch.device</em><em>, </em><em>optional</em>) – The device to perform calculations, by default ‘cuda:0’ if available, else ‘cpu’.</p></li>
+<li><p><strong>**kwargs</strong> – Additional keyword arguments to be passed to the <cite>explanator</cite> function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>return_noised_images</cite> is False, returns the stability value.
+If <cite>return_noised_images</cite> is True, returns a tuple containing the stability value
+and a list of noisy images.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[float, Tuple[float, List[torch.Tensor]]]</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.stability" title="EnsembleXAI.Metrics.stability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stability</span></code></a></dt><dd><p>Measure the stability value of explanations for a set of images.</p>
+</dd>
+</dl>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.tensor_to_list_tensors">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">tensor_to_list_tensors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.tensor_to_list_tensors" title="Link to this definition"></a></dt>
+<dd><p>Splits first n dimensions of a Tensor into a list of Tensors.</p>
+<p>Splits the first n Tensor dimensions into a list of Tensors of length equal to product of the split dimensions sizes.
+Resulting Tensors have dimensions reduced by a factor of n.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tensors</strong> (<em>torch.Tensor</em>) – Tensor to be split into a list. Number of dimensions greater than depth parameter.</p></li>
+<li><p><strong>depth</strong> (<em>int</em>) – Value representing the depth to which to split the tensors, starting from the first dimension.
+Therefore, depth=1 represents splitting only the first dimension. Thus depth cannot be larger than the length of the Tensors shape.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A single list consisting of all the split Tensors.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of torch.Tensor</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.consistency" title="EnsembleXAI.Metrics.consistency"><code class="xref py py-obj docutils literal notranslate"><span class="pre">consistency</span></code></a></dt><dd><p>Metric representing how similar are different explanations of one photo.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.stability" title="EnsembleXAI.Metrics.stability"><code class="xref py py-obj docutils literal notranslate"><span class="pre">stability</span></code></a></dt><dd><p>Measures how similar/stable are explanations of similar photos.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dim1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dim2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">])])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stacked_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">dim1</span><span class="p">,</span> <span class="n">dim2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stacked_tensor</span>
+<span class="go">tensor([[[1., 1., 1., 1.],</span>
+<span class="go">         [2., 2., 2., 2.]],</span>
+<span class="go">        [[3., 3., 3., 3.],</span>
+<span class="go">         [4., 4., 4., 4.]]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tensor_to_list_tensors</span><span class="p">(</span><span class="n">stacked_tensor</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">[tensor([[1., 1., 1., 1.],</span>
+<span class="go">         [2., 2., 2., 2.]]),</span>
+<span class="go">tensor([[3., 3., 3., 3.],</span>
+<span class="go">        [4., 4., 4., 4.]])]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tensor_to_list_tensors</span><span class="p">(</span><span class="n">stacked_tensor</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">[tensor([1., 1., 1., 1.]),</span>
+<span class="go"> tensor([2., 2., 2., 2.]),</span>
+<span class="go"> tensor([3., 3., 3., 3.]),</span>
+<span class="go"> tensor([4., 4., 4., 4.])]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Metrics.union_mask">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Metrics.</span></span><span class="sig-name descname"><span class="pre">union_mask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">absolute_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#EnsembleXAI.Metrics.union_mask" title="Link to this definition"></a></dt>
+<dd><p>Calculates the union of two masks.</p>
+<p>Calculates the logical ‘or’ union of two n-dimensional masks where the absolute
+values of data are greater than the thresholds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tensor1</strong> (<em>torch.Tensor</em>) – First of the two masks.</p></li>
+<li><p><strong>tensor2</strong> (<em>torch.Tensor</em>) – Second of the two masks.</p></li>
+<li><p><strong>threshold1</strong> (<em>float</em>) – Threshold value for the first mask.</p></li>
+<li><p><strong>threshold2</strong> (<em>float</em>) – Threshold value for the second mask.</p></li>
+<li><p><strong>absolute_value</strong> (<em>bool</em>) – Boolean deciding if the compared tensors should be taken as absolute value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Boolean Tensor with True values on the union of the masks, where values are over thresholds.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.intersection_over_union" title="EnsembleXAI.Metrics.intersection_over_union"><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection_over_union</span></code></a></dt><dd><p>Measures the average division of intersection area over the union area.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Metrics.intersection_mask" title="EnsembleXAI.Metrics.intersection_mask"><code class="xref py py-obj docutils literal notranslate"><span class="pre">intersection_mask</span></code></a></dt><dd><p>Calculates the intersection of two masks.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_2d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_2d</span>
+<span class="go">tensor([[1., 0., 1.],</span>
+<span class="go">        [0., 1., 0.],</span>
+<span class="go">        [1., 0., 1.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plus_2d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plus_2d</span>
+<span class="go">tensor([[0., 1., 0.],</span>
+<span class="go">        [1., 1., 1.],</span>
+<span class="go">        [0., 1., 0.]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">union_mask</span><span class="p">(</span><span class="n">cross_2d</span><span class="p">,</span> <span class="n">plus_2d</span><span class="p">)</span>
+<span class="go">tensor([[True, True, True],</span>
+<span class="go">        [True, True, True],</span>
+<span class="go">        [True, True, True]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cross_2d_small</span> <span class="o">=</span> <span class="mf">0.4</span><span class="o">*</span><span class="n">cross_2d</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plus_2d_small</span> <span class="o">=</span> <span class="mf">0.7</span><span class="o">*</span><span class="n">plus_2d</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">union_mask</span><span class="p">(</span><span class="n">cross_2d_small</span><span class="p">,</span> <span class="n">plus_2d_small</span><span class="p">,</span> <span class="n">threshold1</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="go">tensor([[False,  True, False],</span>
+<span class="go">    [ True,  True,  True],</span>
+<span class="go">    [False,  True, False]])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">union_mask</span><span class="p">(</span><span class="n">cross_2d_small</span><span class="p">,</span> <span class="n">plus_2d_small</span><span class="p">,</span> <span class="n">threshold1</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">threshold2</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+<span class="go">tensor([[ True, False,  True],</span>
+<span class="go">        [False,  True, False],</span>
+<span class="go">        [ True, False,  True]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="EnsembleXAI.Ensemble.html" class="btn btn-neutral float-left" title="EnsembleXAI.Ensemble module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="EnsembleXAI.Normalization.html" class="btn btn-neutral float-right" title="EnsembleXAI.Normalization module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, anonymous.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

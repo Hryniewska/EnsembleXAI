@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EnsembleXAI.Ensemble module &mdash; EnsembleXAI 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=f2a433a1"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="EnsembleXAI.Metrics module" href="EnsembleXAI.Metrics.html" />
+    <link rel="prev" title="Example Usage on ImageNet dataset" href="Example_notebook.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EnsembleXAI
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Example_notebook.html">Example Usage on ImageNet dataset</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Submodules:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">EnsembleXAI.Ensemble module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Ensemble.autoweighted"><code class="docutils literal notranslate"><span class="pre">autoweighted()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Ensemble.normEnsembleXAI"><code class="docutils literal notranslate"><span class="pre">normEnsembleXAI()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnsembleXAI.Ensemble.supervisedXAI"><code class="docutils literal notranslate"><span class="pre">supervisedXAI()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="EnsembleXAI.Metrics.html">EnsembleXAI.Metrics module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="EnsembleXAI.Normalization.html">EnsembleXAI.Normalization module</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EnsembleXAI</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">EnsembleXAI.Ensemble module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/EnsembleXAI.Ensemble.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-EnsembleXAI.Ensemble">
+<span id="ensemblexai-ensemble-module"></span><h1>EnsembleXAI.Ensemble module<a class="headerlink" href="#module-EnsembleXAI.Ensemble" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Ensemble.autoweighted">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Ensemble.</span></span><span class="sig-name descname"><span class="pre">autoweighted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TensorOrTupleOfTensorsGeneric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metrics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Callable</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precomputed_metrics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#EnsembleXAI.Ensemble.autoweighted" title="Link to this definition"></a></dt>
+<dd><p>Aggregate explanations weighted by their quality measured by metrics.</p>
+<p>This function in an implementation of explanation ensemble algorithm published in <a class="reference internal" href="#rbe47d88d78bd-1" id="id1">[1]</a>. It uses
+<a class="reference internal" href="EnsembleXAI.Metrics.html#EnsembleXAI.Metrics.ensemble_score" title="EnsembleXAI.Metrics.ensemble_score"><code class="xref py py-func docutils literal notranslate"><span class="pre">EnsembleXAI.Metrics.ensemble_score()</span></code></a> to calculate quality of each explanation. One of <cite>metrics</cite>
+or <cite>precomputed_metrics</cite> should be passed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inputs</strong> (<em>TensorOrTupleOfTensorsGeneric</em>) – Explanations in form of tuple of tensors or tensor. <cite>inputs</cite> dimensions correspond to no. of observations,
+no. of explanations for each observation, and single explanation.</p></li>
+<li><p><strong>metrics</strong> (<em>List</em><em>[</em><em>Callable</em><em>]</em><em>, </em><em>default None</em>) – Metrics used to assess the quality of an explanation. Ignored when precomputed_metrics is not None.</p></li>
+<li><p><strong>metric_weights</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – Weights used to calculate <a class="reference internal" href="EnsembleXAI.Metrics.html#EnsembleXAI.Metrics.ensemble_score" title="EnsembleXAI.Metrics.ensemble_score"><code class="xref py py-func docutils literal notranslate"><span class="pre">EnsembleXAI.Metrics.ensemble_score()</span></code></a> of every explanation.</p></li>
+<li><p><strong>precomputed_metrics</strong> (<em>Any</em><em>, </em><em>default None</em>) – Metrics’ values can be precomputed and passed as an argument. Need to be in 3 dimensional format
+where dimensions correspond to observations, explanations and metrics.
+Supported formats are numpy ndarray and torch tensor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Weighted arithmetic mean of explanations, weighted by <a class="reference internal" href="EnsembleXAI.Metrics.html#EnsembleXAI.Metrics.ensemble_score" title="EnsembleXAI.Metrics.ensemble_score"><code class="xref py py-func docutils literal notranslate"><span class="pre">EnsembleXAI.Metrics.ensemble_score()</span></code></a>.
+Dimensions correspond to no. of observations, aggregated explanation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Ensemble.normEnsembleXAI" title="EnsembleXAI.Ensemble.normEnsembleXAI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normEnsembleXAI</span></code></a></dt><dd><p>Simple aggregation by function, like average.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Ensemble.supervisedXAI" title="EnsembleXAI.Ensemble.supervisedXAI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">supervisedXAI</span></code></a></dt><dd><p>Use Kernel Ridge Regression for aggregation, suitable when masks are available.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Notes</p>
+<p>Explanations are normalized by mean and standard deviation before aggregation to ensure comparable values.</p>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="rbe47d88d78bd-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Bobek, S., Bałaga, P., Nalepa, G.J. (2021), “Towards Model-Agnostic Ensemble Explanations.”
+In: Paszynski, M., Kranzlmüller, D., Krzhizhanovskaya, V.V., Dongarra, J.J., Sloot, P.M. (eds)
+Computational Science – ICCS 2021. ICCS 2021. Lecture Notes in Computer Science(), vol 12745. Springer,
+Cham. <a class="reference external" href="https://doi.org/10.1007/978-3-030-77970-2_4">https://doi.org/10.1007/978-3-030-77970-2_4</a></p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">EnsembleXAI.Ensemble</span> <span class="kn">import</span> <span class="n">autoweighted</span>
+<span class="go"># We have a tensor of 4 explanations for 15 observations,</span>
+<span class="go"># each with 3 channels and image size 32 x 32</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">explanations</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span class="go"># We use precomputed metrics</span>
+<span class="go"># 2 metrics to evaluate each of 4 explanation for 15 observations</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">metrics</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ensembled_explanations</span> <span class="o">=</span> <span class="n">autoweighted</span><span class="p">(</span><span class="n">explanations</span><span class="p">,</span>
+<span class="gp">... </span>                                      <span class="n">metric_weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span>
+<span class="gp">... </span>                                      <span class="n">precomputed_metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Ensemble.normEnsembleXAI">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Ensemble.</span></span><span class="sig-name descname"><span class="pre">normEnsembleXAI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TensorOrTupleOfTensorsGeneric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregating_func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#EnsembleXAI.Ensemble.normEnsembleXAI" title="Link to this definition"></a></dt>
+<dd><p>Aggregate explanations in the simplest way.</p>
+<p>Use provided aggregating functions or pass a custom callable. Combine explanations for every observation and get
+one aggregated explanation for every observation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inputs</strong> (<em>TensorOrTupleOfTensorsGeneric</em>) – Explanations in form of tuple of tensors or tensor. <cite>inputs</cite> dimensions correspond to no. of observations,
+no. of explanations for each observation, and single explanation.</p></li>
+<li><p><strong>aggregating_func</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>Callable</em><em>[</em><em>[</em><em>Tensor</em><em>]</em><em>, </em><em>Tensor</em><em>]</em><em>]</em>) – Aggregating function. Can be string, one of ‘avg’, ‘min’, ‘max’,
+or a function from a list of tensors to tensor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Aggregated explanations. Dimensions correspond to no. of observations, aggregated explanation.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Ensemble.autoweighted" title="EnsembleXAI.Ensemble.autoweighted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">autoweighted</span></code></a></dt><dd><p>Aggregation weighted by quality of each explanation.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Ensemble.supervisedXAI" title="EnsembleXAI.Ensemble.supervisedXAI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">supervisedXAI</span></code></a></dt><dd><p>Use Kernel Ridge Regression for aggregation, suitable when masks are available.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">EnsembleXAI.Ensemble</span> <span class="kn">import</span> <span class="n">normEnsembleXAI</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">captum.attr</span> <span class="kn">import</span> <span class="n">IntegratedGradients</span><span class="p">,</span> <span class="n">GradientShap</span><span class="p">,</span> <span class="n">Saliency</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">ImageClassifier</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">inputs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ig</span> <span class="o">=</span> <span class="n">IntegratedGradients</span><span class="p">(</span><span class="n">net</span><span class="p">)</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gs</span> <span class="o">=</span> <span class="n">GradientShap</span><span class="p">(</span><span class="n">net</span><span class="p">)</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sal</span> <span class="o">=</span> <span class="n">Saliency</span><span class="p">(</span><span class="n">net</span><span class="p">)</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">explanations</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">ig</span><span class="p">,</span> <span class="n">gs</span><span class="p">,</span> <span class="n">sal</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">agg</span> <span class="o">=</span> <span class="n">normEnsembleXAI</span><span class="p">(</span><span class="n">explanations</span><span class="p">,</span> <span class="s1">&#39;avg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnsembleXAI.Ensemble.supervisedXAI">
+<span class="sig-prename descclassname"><span class="pre">EnsembleXAI.Ensemble.</span></span><span class="sig-name descname"><span class="pre">supervisedXAI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TensorOrTupleOfTensorsGeneric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TensorOrTupleOfTensorsGeneric</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_folds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">TensorOrTupleOfTensorsGeneric</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="headerlink" href="#EnsembleXAI.Ensemble.supervisedXAI" title="Link to this definition"></a></dt>
+<dd><p>Aggregate explanations by training supervised machine learning model.</p>
+<p>This function in an implementation of explanation ensemble algorithm published in <a class="reference internal" href="#r51e119f02dac-1" id="id2">[1]</a>. It uses
+<code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.kernel_ridge.KernelRidge</span></code> to train the Kernel Ridge Regression (KRR) model with explanations
+as inputs <span class="math notranslate nohighlight">\(X\)</span> and masks as output <span class="math notranslate nohighlight">\(y\)</span>.
+K-Fold split is used to generate aggregated explanations without information leakage. Internally uses
+<code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.KFold</span></code> to make the split.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>inputs</strong> (<em>TensorOrTupleOfTensorsGeneric</em>) – Explanations in form of tuple of tensors or tensor. <cite>inputs</cite> dimensions correspond to no. of observations,
+no. of explanations for each observation, and single explanation.</p></li>
+<li><p><strong>masks</strong> (<em>TensorOrTupleOfTensorsGeneric</em>) – Masks used by KRR model as output. Should be 3 dimensional shape, where dimensions correspond to no. of observations,
+and single mask. Size of single mask should be the same as size of single explanation in <cite>inputs</cite>.</p></li>
+<li><p><strong>n_folds</strong> (<em>int</em><em>, </em><em>default 3</em>) – Number of folds used to train the KRR model. <cite>n_folds</cite> should be an <cite>int</cite> greater than 1. When <cite>n_folds</cite> is
+equal to no. of observations in <cite>inputs</cite>, “leave one out” training is done.</p></li>
+<li><p><strong>weights</strong> (<em>Union</em><em>[</em><em>str</em><em>, </em><em>TensorOrTupleOfTensorsGeneric</em><em>, </em><em>np.ndarray</em><em>, </em><em>None</em><em>]</em><em>, </em><em>default None</em>) – Sample weights for training the KRR. If None, weights are uniform. If ‘auto’,
+weight of an observation is inversely proportional to the area of the observation’s mask. Can be also provided
+as tensor, list, tuple or numpy array of custom values. Weights can be used to promote smaller masks.</p></li>
+<li><p><strong>shuffle</strong> (<em>Any</em><em>, </em><em>default False</em>) – If <cite>True</cite> inputs and masks will be shuffled before k-fold split. Internally passed
+to <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.KFold</span></code>.</p></li>
+<li><p><strong>random_state</strong> (<em>Any</em><em>, </em><em>default None</em>) – Used only when <cite>shuffle</cite> is <cite>True</cite>. Internally passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">sklearn.model_selection.KFold</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tensor of KRR model outputs, which are the aggregated explanations. It has 3 dimensions.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tensor</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="#EnsembleXAI.Ensemble.normEnsembleXAI" title="EnsembleXAI.Ensemble.normEnsembleXAI"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normEnsembleXAI</span></code></a></dt><dd><p>Simple aggregation by function, like average.</p>
+</dd>
+<dt><a class="reference internal" href="#EnsembleXAI.Ensemble.autoweighted" title="EnsembleXAI.Ensemble.autoweighted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">autoweighted</span></code></a></dt><dd><p>Aggregation weighted by quality of each explanation.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r51e119f02dac-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>L. Zou et al., “Ensemble image explainable AI (XAI) algorithm for severe community-acquired
+pneumonia and COVID-19 respiratory infections,”
+in IEEE Transactions on Artificial Intelligence, doi: 10.1109/TAI.2022.3153754.</p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">EnsembleXAI.Ensemble</span> <span class="kn">import</span> <span class="n">normEnsembleXAI</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">captum.attr</span> <span class="kn">import</span> <span class="n">IntegratedGradients</span><span class="p">,</span> <span class="n">GradientShap</span><span class="p">,</span> <span class="n">Saliency</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net</span> <span class="o">=</span> <span class="n">ImageClassifier</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">masks</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ig</span> <span class="o">=</span> <span class="n">IntegratedGradients</span><span class="p">(</span><span class="n">net</span><span class="p">)</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gs</span> <span class="o">=</span> <span class="n">GradientShap</span><span class="p">(</span><span class="n">net</span><span class="p">)</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sal</span> <span class="o">=</span> <span class="n">Saliency</span><span class="p">(</span><span class="n">net</span><span class="p">)</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">explanations</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">ig</span><span class="p">,</span> <span class="n">gs</span><span class="p">,</span> <span class="n">sal</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">krr_explanations</span> <span class="o">=</span> <span class="n">supervisedXAI</span><span class="p">(</span><span class="n">explanations</span><span class="p">,</span> <span class="n">masks</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Example_notebook.html" class="btn btn-neutral float-left" title="Example Usage on ImageNet dataset" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="EnsembleXAI.Metrics.html" class="btn btn-neutral float-right" title="EnsembleXAI.Metrics module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, anonymous.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

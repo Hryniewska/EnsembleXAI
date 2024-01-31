@@ -1,0 +1,13 @@
+numpy==1.24.4
+pandas==2.1.0
+matplotlib==3.3.3
+scikit-learn~=1.1.2
+torch==2.1.0
+torchvision==0.16.0
+tqdm==4.65.2
+timm==0.8.19
+opencv-python==4.7.0.72
+Pillow==9.0.1
+scikit-image==0.20.0
+captum==0.6.0
+quantus==0.3.4

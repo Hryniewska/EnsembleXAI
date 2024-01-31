@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+[tool.setuptools]
+packages = ["EnsembleXAI"]
+[project]
+name = "EnsembleXAI"
+version = "0.0.1"
+authors = [
+  { name="anonymous", email="anonymous"}
+]
+description = "NormEnsembleXAI: Unveiling the Strengths and Weaknesses of XAI Ensemble Techniques."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "numpy==1.24.4",
+    "scikit-learn~=1.1.2",
+    "torch==2.1.0",
+    "captum==0.6.0"
+
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/anonymous-conference-journal/EnsembleXAI"
+"Bug Tracker" = "https://github.com/anonymous-conference-journal/EnsembleXAI/issues"
