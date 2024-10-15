@@ -13,11 +13,11 @@ This repository presents the **EnsembleXAI** library, a comprehensive Python lib
 
 ## Table of Contents
 
-1. [Installation](#installation)
-2. [Example of Workflow](#example-of-workflow)
-4. [About the Methods](#about-the-methods)
-6. [Documentation](#documentation)
-7. [License](#license)
+- [Installation](#installation)
+- [Example of Workflow](#example-of-workflow)
+- [About the Methods](#about-the-methods)
+- [Documentation](#documentation)
+- [License](#license)
 
 ## Installation
 
@@ -39,6 +39,15 @@ pip install git+https://github.com/Hryniewska/EnsembleXAI.git
 ```
 
 ## Example of Workflow
+
+1. [Choose Model to Explain](#1-choose-model-to-explain)
+2. [Read an Image to Explain](#2-read-an-image-to-explain)
+3. [Generate Explanations](#3-generate-explanations)
+4. [Stack Explanations](#4-stack-explanations)
+5. [(Optional) Normalize Explanations](#5-optional-normalize-explanations)
+6. [Ensemble Your Explanations](#6-ensemble-your-explanations)
+7. [Visualize Your Results](#7-visualize-your-results)
+8. [(Optional) Calculate Quality Metric](#8-optional-calculate-quality-metric)
 
 ### 1. Choose Model to Explain
 
@@ -183,7 +192,7 @@ The EnsembleXAI library consists of three main modules:
 
 The `Ensemble` module provides functionalities for ensembling explanations from various XAI methods. It allows you to aggregate multiple explanations using methods such as Maximum, Minimum, and Mean.
 
-The `Metrics` module contains various explainability metrics, primarily those introduced in~Zou et al. and Bobek et al.. These metrics allow you to evaluate the quality and reliability of the ensembled explanations.
+The `Metrics` module contains various explainability metrics, primarily those introduced in Zou et al. and Bobek et al.. These metrics allow you to evaluate the quality and reliability of the ensembled explanations.
 
 The `Normalization` module provides scaling and standardizing functions to handle the diverse value ranges produced by different explanation methods. You can use these functions to preprocess your explanations before ensembling.
 
